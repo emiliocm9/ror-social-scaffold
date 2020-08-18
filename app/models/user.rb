@@ -46,12 +46,13 @@ class User < ApplicationRecord
 
   def request_friend(user)
     return false if relation_exist?(user)
+
     friendship = friendships.build
     friendship.friend_id = user.id
     friendship.confirmed = false
     friendship.save
   end
-  
+
   def relation_exist?(user)
     friends.include?(user) || pending_friends.include?(user) || friend_requests.include?(user) || user == self
   end

@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
 
   def show
     redirect_to users_path
-  end  
+  end
 
   def update
     @user = User.find(params[:id])
