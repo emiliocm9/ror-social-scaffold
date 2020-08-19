@@ -30,10 +30,10 @@ RSpec.describe User, type: :model do
     end
 
     it 'Reject friend request' do
-      @user.request_friend(@user2)
-      @user2.reject_friend(@user)
-      u1 = User.find(@user.id)
-      expect(u1.friends.first).to be nil
+      @user1.request_friend(@user2)
+      @user2.delete_friend(@user1)
+      user1 = User.find(@user1.id)
+      expect(user1.friends.first).to be nil
     end
 
     it 'Friend checking' do
