@@ -7,6 +7,16 @@ RSpec.describe User, type: :model do
       @user2 = User.create(email: 'email2@mail.com', name: 'User2', password: '123456')
     end
 
+    it 'pending_friends' do
+      @user1.request_friend(@user2)
+      expect(@user1.pending_friends.first.id).to be @user2.id
+    end
+
+    it 'friend_requests' do
+      @user1.request_friend(@user2)
+      expect(@user2.friend_requests.first.id).to be @user1.id
+    end
+
     it 'confirm_friend' do
       @user1.request_friend(@user2)
       @user2.confirm_friend(@user1)
@@ -14,24 +24,9 @@ RSpec.describe User, type: :model do
       expect(user1.friends.first.id).to be @user2.id
     end
 
-    it 'show pending friends' do
-      @user.request_friend(@user2)
-      expect(@user.pending_friends.first.id).to be @user2.id
-    end
-
-    it 'show friend requests' do
-      @user.request_friend(@user2)
-      expect(@user2.friend_requests.first.id).to be @user.id
-    end
-
-    it 'request friend' do
-      @user.request_friend(@user2)
-      expect(@user2.friend_requests.first.id).to be @user.id
-    end
-
     it 'request friend secound time' do
-      @user.request_friend(@user2)
-      expect(@user.request_friend(@user2)).to be false
+      @user1.request_friend(@user2)
+      expect(@user1.request_friend(@user2)).to be false
     end
 
     it 'Reject friend request' do
