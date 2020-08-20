@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'Friend yourself' do
-      expect(@user1.relation_exist?(@user2)).to be true
+      expect(@user1.relation_exist?(@user1)).to be true
     end
   end
 end
