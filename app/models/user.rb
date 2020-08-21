@@ -16,9 +16,6 @@ class User < ApplicationRecord
   has_many :confirmed_friendships, -> { where confirmed: true }, class_name: "Friendship"
   has_many :friends, through: :confirmed_friendships
 
-  has_many :inverted_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "friend_id"
-  has_many :friend_requests, through: :inverted_friendships
-
   has_many :pending_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "user_id"
   has_many :pending_friends, through: :pending_friendships, source: :friend
 
@@ -27,10 +24,14 @@ class User < ApplicationRecord
     friendship2 = friendships.build
     friendship2.user_id = id
     friendship2.friend_id = user.id
-    frinedship2.confirmed = true
+    friendship2.confirmed = true
     friendship.confirmed = true
     friendship.save
-    frinedship2.save
+    friendship2.save
+  end
+
+  def friend_requests
+    inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
   end
 
   def delete_friend(user)
