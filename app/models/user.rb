@@ -24,8 +24,13 @@ class User < ApplicationRecord
 
   def confirm_friend(user)
     friendship = inverse_friendships.find { |relation| relation.user == user }
+    friendship2 = friendships.build
+    friendship2.user_id = id
+    friendship2.friend_id = user.id
+    frinedship2.confirmed = true
     friendship.confirmed = true
     friendship.save
+    frinedship2.save
   end
 
   def delete_friend(user)
