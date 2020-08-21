@@ -11,6 +11,8 @@
               </span>
             </li>
           </div>
+
+          <% if false%>
           <div class="col-12 col-md-6 d-flex justify-content-center">
             <% if current_user.friend?(user)%>
               <p><%= user.name %> is your friend!</p>
@@ -26,6 +28,11 @@
                 <button class="border border-info"> <%=link_to 'friend request', friend_req_path(user)%> </button>
               <% end %>
             <%end%>
+          </div>
+          <% end %>
+
+          <div class="col-12 col-md-6 d-flex justify-content-center">
+              <%= self.friend_check(user) %>
           </div>
         </div>
       </div>
