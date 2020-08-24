@@ -11,17 +11,17 @@ module UserHelper
 
   def friend_change(user)
     if current_user.friend_requests.include?(user)
-      link_to 'Decline', friendship_path(user), method: :delete
+      ('<p><button>' + (link_to 'Decline', friendship_path(user), method: :delete) + '</button><p>').html_safe
     elsif current_user.pending_friends.include?(user)
       'You have sent a friend request'
     else
-      link_to 'friend request', friend_req_path(user)
+      ('<p><button>' + (link_to 'friend request', friend_req_path(user)) + '</button><p>').html_safe
     end
   end
 
   def friend_acc(user)
     if current_user.friend_requests.include?(user)
-      link_to 'Accept', friendship_path(user), method: :patch
+      ('<p><button>' + (link_to 'Accept', friendship_path(user), method: :patch) + '</button><p>').html_safe
     end
   end
 end
