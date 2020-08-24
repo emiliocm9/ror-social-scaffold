@@ -22,6 +22,8 @@ module UserHelper
   def friend_acc(user)
     if current_user.friend_requests.include?(user)
       ('<p><button>' + (link_to 'Accept', friendship_path(user), method: :patch) + '</button><p>').html_safe
+    else
+      '<p><p>'.html_safe
     end
   end
 end
