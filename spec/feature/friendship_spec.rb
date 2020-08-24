@@ -19,43 +19,44 @@ RSpec.describe 'Friendship', type: :feature, feature: true do
       url = 'http://localhost:3000/users/'
       url.concat(@user2.id.to_s)
       visit url
-      click_on page.all('friend request')[1]
+      page.all('a')[4].click
       expect(@user.pending_friends).to include(@user2)
       expect(page).to have_content('Success')
     end
 
-    scenario 'friend accept' do
-      visit 'http://localhost:3000/users'
-      url = 'http://localhost:3000/friendships/'
+    scenario 'confirm friend' do
+      url = 'http://localhost:3000/users/'
       url.concat(@user2.id.to_s)
       visit url
+      page.all('a')[4].click
       click_on 'Sign out'
       visit 'http://localhost:3000/users/sign_in'
-      fill_in 'Email', with: 'mail2@mail.com'
+      fill_in 'Email', with: 'user2@mail.com'
       fill_in 'Password', with: '123456'
       click_on 'Log in'
-      visit 'http://localhost:3000/users'
-      url = 'http://localhost:3000/friendships/'
+      url = 'http://localhost:3000/users/'
       url.concat(@user.id.to_s)
-      page.driver.submit :patch, url, {}
-      expect(page).to have_content('Accepted Friendship')
+      visit url
+      page.all('a')[5].click
+      expect(page).to have_content('You have a new friend!')
+      expect(@user.friends).to include(@user2)
     end
 
     scenario 'friend reject' do
-      visit 'http://localhost:3000/users'
-      url = 'http://localhost:3000/friendships/'
+      url = 'http://localhost:3000/users/'
       url.concat(@user2.id.to_s)
       visit url
+      page.all('a')[4].click
       click_on 'Sign out'
       visit 'http://localhost:3000/users/sign_in'
-      fill_in 'Email', with: 'mail2@mail.com'
+      fill_in 'Email', with: 'user2@mail.com'
       fill_in 'Password', with: '123456'
       click_on 'Log in'
-      visit 'http://localhost:3000/users'
-      url = 'http://localhost:3000/friendships/'
+      url = 'http://localhost:3000/users/'
       url.concat(@user.id.to_s)
-      page.driver.submit :delete, url, {}
-      expect(page).to have_content('Rejected Friendship')
+      visit url
+      page.all('a')[4].click
+      expect(page).to have_content('Friend deleted')
     end
   end
 end
