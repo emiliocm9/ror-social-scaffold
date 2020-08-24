@@ -48,6 +48,8 @@ group :test do
   # Capybara, the library that allows us to interact with the browser using Ruby
   gem 'capybara', '>= 2.15'
   gem 'rspec-rails'
+  #provides RSpec- and Minitest-compatible one-liners that test common Rails functionality
+  gem 'shoulda-matchers'
   # The follow two gems aid with the nuts and bolts
   # of interacting with the browser
   gem 'selenium-webdriver'
