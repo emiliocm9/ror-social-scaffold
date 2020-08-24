@@ -45,8 +45,11 @@ group :development, :test do
 end
 
 group :test do
+  # Capybara, the library that allows us to interact with the browser using Ruby
   gem 'capybara', '>= 2.15'
   gem 'rspec-rails'
+  # The follow two gems aid with the nuts and bolts
+  # of interacting with the browser
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.0'
 end
