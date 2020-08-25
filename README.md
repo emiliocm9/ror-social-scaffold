@@ -67,12 +67,13 @@ Open `http://localhost:3000/` in your browser.
 ### Run tests
 
 ```
-    rpsec --format documentation
+    rspec --format documentation
 ```
 
 > We have added tests for the user model. Checking out the proper functionality of the friendship requests, acceptance and denial.
 
-![Test SS](./app/assets/images/Testss.png)
+![Test SS](./app/assets/images/test_1.png)
+![Test SS](./app/assets/images/test_2.png)
 
 ### Deployment
 
