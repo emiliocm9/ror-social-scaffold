@@ -11,29 +11,9 @@
 
 <article class="timeline">
   <h3>
-    Recent posts
-  </h3>
-  <ul class="posts">
-    <%= render @timeline_posts %>
-  </ul>
-</article>
-
-<article class="timeline">
-  <h3>
-    My Posts
-  </h3>
-  <ul class="posts">
-    <%= render @user_posts %>
-  </ul>
-</article>
-
-<% if !current_user.friends.empty? %>
-<article class="timeline">
-  <h3>
-    My friends posts
+    My posts and my friends posts
   </h3>
   <ul class="posts">
     <%= render @friend_posts %>
   </ul>
 </article>
-<% end %>

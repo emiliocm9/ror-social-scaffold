@@ -31,6 +31,7 @@ class PostsController < ApplicationController
 
   def friend_posts
     friends = current_user.friends.pluck(:id)
+    friends << current_user.id
     @friend_posts ||= Post.where(user_id: friends).ordered_by_most_recent
   end
 
