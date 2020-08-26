@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4'
@@ -35,8 +35,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'bootstrap', '~> 4.5'
 gem 'devise'
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,7 +45,15 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec'
+  # Capybara, the library that allows us to interact with the browser using Ruby
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
+  # Provides RSpec- and Minitest-compatible one-liners that test common Rails functionality
+  gem 'shoulda-matchers'
+  # The follow two gems aid with the nuts and bolts
+  # of interacting with the browser
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 4.0'
 end
 
 group :development do
